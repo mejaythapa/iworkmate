@@ -1,40 +1,31 @@
-# Use Node 18 Alpine image as the base
-FROM node:18-alpine AS builder
+# Base image
+FROM node:18-alpine
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy only package files to install dependencies
+# Define build-time arguments for Supabase keys
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+# Set environment variables for the build and runtime
+ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+
+# Copy package files
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the project files
+# Copy the project files into the container
 COPY . .
 
-# Copy .env file into container (required at build time for NEXT_PUBLIC_*)
-COPY .env .env
-
-# Build the Next.js app
+# Build the application
 RUN npm run build
 
-# ---------------------------
-
-# Use a lightweight image for production
-FROM node:18-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy built assets from builder stage
-COPY --from=builder /app ./
-
-# Install only production dependencies
-RUN npm install --omit=dev
-
-# Expose the Next.js port
+# Expose port 3000
 EXPOSE 3000
 
-# Run the Next.js app in production mode
+# Start the application
 CMD ["npm", "start"]
