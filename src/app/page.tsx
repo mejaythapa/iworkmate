@@ -16,10 +16,14 @@ export default function Home() {
                 <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-gray-900">
                   Building Amazing Digital Products
                 </h1>
-                <p className="text-xl text-gray-600 mb-8">
-                  We help companies build successful digital products through
-                  our expertise in product strategy, UI/UX design, and
-                  development.
+                <p className="text-lg text-gray-600 mb-8">
+                  We&apos;re a team of passionate developers, designers, and
+                  strategists who love creating beautiful, functional websites.
+                </p>
+                <p className="text-lg text-gray-600 mb-8">
+                  Our mission is to help businesses grow their online presence
+                  with modern, responsive websites that look great on any
+                  device.
                 </p>
                 <Link
                   href="/contact"
@@ -162,47 +166,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-                Featured Projects
-              </h2>
-              <p className="text-gray-600 text-lg">
-                Some of our recent work that we're proud of
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((project, index) => (
-              <ScaleIn key={project} delay={index * 0.1}>
-                <Link href={`/projects/${project}`}>
-                  <div className="group relative aspect-[4/3] rounded-xl overflow-hidden">
-                    <Image
-                      src={`/project-${project}.svg`}
-                      alt={`Project ${project}`}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className="text-xl font-semibold mb-2">
-                          Project Name
-                        </h3>
-                        <p className="text-sm">Category</p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </ScaleIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section */}
       <section className="py-20 px-4 bg-gray-900 text-white">
         <div className="container mx-auto">
@@ -212,8 +175,8 @@ export default function Home() {
                 Start Your Project
               </h2>
               <p className="text-xl text-gray-300 mb-8">
-                Ready to bring your digital product to life? Let's talk about
-                your project.
+                Ready to bring your digital product to life? Let&apos;s talk
+                about your project.
               </p>
               <Link
                 href="/contact"

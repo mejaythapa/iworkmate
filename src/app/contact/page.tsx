@@ -10,9 +10,13 @@ export default function ContactPage() {
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">
               Get in Touch
             </h1>
-            <p className="text-xl text-gray-300">
-              Have a project in mind? We'd love to hear about it. Send us a
-              message and we'll get back to you as soon as possible.
+            <p className="text-lg text-gray-600 mb-8">
+              Have a project in mind? Let&apos;s discuss how we can help bring
+              your vision to life.
+            </p>
+            <p className="text-lg text-gray-600 mb-8">
+              We&apos;re always excited to hear about new projects and
+              opportunities.
             </p>
           </div>
         </FadeIn>

@@ -10,12 +10,16 @@ export default function ContactForm() {
     email: '',
     message: '',
   });
-  const [status, setStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    'idle' | 'success' | 'error'
+  >('idle');
   const supabase = createClientComponentClient();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus({ type: 'loading', message: 'Sending message...' });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
 
     try {
       const { error } = await supabase.from('contacts').insert([
@@ -29,16 +33,12 @@ export default function ContactForm() {
 
       if (error) throw error;
 
-      setStatus({
-        type: 'success',
-        message: 'Thank you! Your message has been sent.',
-      });
+      setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      setStatus({
-        type: 'error',
-        message: 'Something went wrong. Please try again.',
-      });
+    } catch {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -103,19 +103,20 @@ export default function ContactForm() {
           <div>
             <button
               type="submit"
-              disabled={status.type === 'loading'}
+              disabled={isSubmitting}
               className="w-full bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition-all disabled:opacity-50"
             >
-              {status.type === 'loading' ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </div>
-          {status.message && (
-            <div
-              className={`p-4 rounded-md ${
-                status.type === 'success' ? 'bg-green-800' : 'bg-red-800'
-              }`}
-            >
-              {status.message}
+          {submitStatus === 'success' && (
+            <div className="p-4 rounded-md bg-green-800">
+              Thank you! Your message has been sent.
+            </div>
+          )}
+          {submitStatus === 'error' && (
+            <div className="p-4 rounded-md bg-red-800">
+              Something went wrong. Please try again.
             </div>
           )}
         </div>

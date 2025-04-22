@@ -2,12 +2,21 @@
 
 import { motion } from 'framer-motion';
 
+type Direction = 'up' | 'down' | 'left' | 'right' | null;
+
+interface FadeInProps {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: Direction;
+  className?: string;
+}
+
 export const FadeIn = ({
   children,
   delay = 0,
   direction = null,
   className = '',
-}) => {
+}: FadeInProps) => {
   const variants = {
     hidden: {
       opacity: 0,
@@ -35,7 +44,12 @@ export const FadeIn = ({
   );
 };
 
-export const ScaleIn = ({ children, delay = 0 }) => {
+interface ScaleInProps {
+  children: React.ReactNode;
+  delay?: number;
+}
+
+export const ScaleIn = ({ children, delay = 0 }: ScaleInProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -48,7 +62,12 @@ export const ScaleIn = ({ children, delay = 0 }) => {
   );
 };
 
-export const HoverScale = ({ children, scale = 1.05 }) => {
+interface HoverScaleProps {
+  children: React.ReactNode;
+  scale?: number;
+}
+
+export const HoverScale = ({ children, scale = 1.05 }: HoverScaleProps) => {
   return (
     <motion.div whileHover={{ scale }} transition={{ duration: 0.2 }}>
       {children}

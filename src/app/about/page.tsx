@@ -15,16 +15,18 @@ export default function AboutPage() {
         <div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">About Me</h1>
           <p className="text-lg text-gray-600 mb-6">
-            I'm a creative developer with a passion for building beautiful and
-            functional web applications. With over 5 years of experience in the
-            industry, I've worked on various projects ranging from e-commerce
-            platforms to mobile applications.
+            I&apos;m a creative developer with a passion for building beautiful
+            and functional web applications. With over 5 years of experience in
+            the industry, I&apos;ve worked on various projects ranging from
+            e-commerce platforms to mobile applications.
           </p>
           <p className="text-lg text-gray-600 mb-8">
-            My expertise includes modern web technologies like React, Next.js,
-            and TypeScript, as well as mobile development with React Native. I
-            believe in creating user-centered designs that are both visually
-            appealing and highly functional.
+            We&apos;re a team of passionate developers, designers, and
+            strategists who love creating beautiful, functional websites.
+          </p>
+          <p className="text-lg text-gray-600 mb-8">
+            Our mission is to help businesses grow their online presence with
+            modern, responsive websites that look great on any device.
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div>

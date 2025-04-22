@@ -1,12 +1,56 @@
-version: '3.8'
-
 services:
-  web:
-    build: .
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
     ports:
-      - '3000:3000'
+      - '80:80'
+      - '443:443'
+    volumes:
+      - caddy_data:/data
+      - ${DATA_FOLDER}/web_root:/data/web_root
+      - ./caddy_config:/config
+      - ./caddy_config/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - shared-net
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    ports:
+      - 5678:5678
+    environment:
+      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - NODE_ENV=production
+      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ${DATA_FOLDER}/local_files:/files
+    networks:
+      - shared-net
+
+  web:
+    build:
+      context: ./iworkmate
+      dockerfile: Dockerfile
+    restart: always
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
       - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
-    restart: always
+    networks:
+      - shared-net
+
+volumes:
+  caddy_data:
+    external: true
+  n8n_data:
+    external: true
+  coolify-data:
+    external: true
+
+networks:
+  shared-net:
+    driver: bridge

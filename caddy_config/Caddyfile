@@ -1,0 +1,9 @@
+iworkmate.com.au {
+  reverse_proxy web:3000
+}
+
+automate.iworkmate.com.au {
+  reverse_proxy n8n:5678 {
+    flush_interval -1
+  }
+} 
