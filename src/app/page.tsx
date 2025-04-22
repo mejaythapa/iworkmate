@@ -1,103 +1,230 @@
-import Image from "next/image";
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { FadeIn, ScaleIn } from '@/components/animations';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-purple-100">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeIn direction="left">
+              <div className="text-left">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-gray-900">
+                  Building Amazing Digital Products
+                </h1>
+                <p className="text-xl text-gray-600 mb-8">
+                  We help companies build successful digital products through
+                  our expertise in product strategy, UI/UX design, and
+                  development.
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition-all"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </FadeIn>
+            <FadeIn direction="right" delay={0.2}>
+              <div className="relative h-[400px] lg:h-[500px]">
+                <Image
+                  src="/hero-mockup.svg"
+                  alt="Digital Products Mockup"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </FadeIn>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+                Our Services
+              </h2>
+              <p className="text-gray-600 text-lg">
+                We offer end-to-end solutions for digital product development
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Product Strategy',
+                description:
+                  'We help define your product vision and create a roadmap for success',
+                icon: '🎯',
+              },
+              {
+                title: 'UI/UX Design',
+                description:
+                  'Create beautiful and intuitive user experiences that delight your customers',
+                icon: '🎨',
+              },
+              {
+                title: 'Development',
+                description:
+                  'Build robust and scalable applications using modern technologies',
+                icon: '💻',
+              },
+              {
+                title: 'Quality Assurance',
+                description:
+                  'Ensure your product meets the highest quality standards',
+                icon: '✅',
+              },
+              {
+                title: 'Launch & Support',
+                description:
+                  'Successfully launch your product and provide ongoing support',
+                icon: '🚀',
+              },
+              {
+                title: 'Analytics & Growth',
+                description:
+                  'Track performance and optimize for continuous growth',
+                icon: '📈',
+              },
+            ].map((service, index) => (
+              <ScaleIn key={service.title} delay={index * 0.1}>
+                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600">{service.description}</p>
+                </div>
+              </ScaleIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+                Our Process
+              </h2>
+              <p className="text-gray-600 text-lg">
+                A proven approach to delivering successful digital products
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                step: '01',
+                title: 'Discovery',
+                description: 'Understanding your business goals and user needs',
+              },
+              {
+                step: '02',
+                title: 'Design',
+                description: 'Creating intuitive and engaging user experiences',
+              },
+              {
+                step: '03',
+                title: 'Development',
+                description: 'Building robust and scalable solutions',
+              },
+              {
+                step: '04',
+                title: 'Delivery',
+                description: 'Launching and iterating based on feedback',
+              },
+            ].map((phase, index) => (
+              <FadeIn key={phase.step} delay={index * 0.1}>
+                <div className="text-center">
+                  <div className="text-blue-600 font-bold text-xl mb-3">
+                    {phase.step}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{phase.title}</h3>
+                  <p className="text-gray-600">{phase.description}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+                Featured Projects
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Some of our recent work that we're proud of
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((project, index) => (
+              <ScaleIn key={project} delay={index * 0.1}>
+                <Link href={`/projects/${project}`}>
+                  <div className="group relative aspect-[4/3] rounded-xl overflow-hidden">
+                    <Image
+                      src={`/project-${project}.svg`}
+                      alt={`Project ${project}`}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 className="text-xl font-semibold mb-2">
+                          Project Name
+                        </h3>
+                        <p className="text-sm">Category</p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </ScaleIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 px-4 bg-gray-900 text-white">
+        <div className="container mx-auto">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+                Start Your Project
+              </h2>
+              <p className="text-xl text-gray-300 mb-8">
+                Ready to bring your digital product to life? Let's talk about
+                your project.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition-all"
+              >
+                Get in Touch
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
     </div>
   );
 }
