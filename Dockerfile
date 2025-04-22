@@ -1,23 +1,40 @@
-# Base image
-FROM node:18-alpine
+# Use Node 18 Alpine image as the base
+FROM node:18-alpine AS builder
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package files
+# Copy only package files to install dependencies
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy project files
+# Copy the rest of the project files
 COPY . .
 
-# Build the application
+# Copy .env file into container (required at build time for NEXT_PUBLIC_*)
+COPY .env .env
+
+# Build the Next.js app
 RUN npm run build
 
-# Expose port
+# ---------------------------
+
+# Use a lightweight image for production
+FROM node:18-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy built assets from builder stage
+COPY --from=builder /app ./
+
+# Install only production dependencies
+RUN npm install --omit=dev
+
+# Expose the Next.js port
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"] 
+# Run the Next.js app in production mode
+CMD ["npm", "start"]
