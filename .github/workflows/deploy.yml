@@ -23,4 +23,4 @@ jobs:
             cd ~/n8n-docker-caddy/iworkmate
             git pull origin main
             cd ..
-            sudo docker compose restart web
+            docker compose restart web
