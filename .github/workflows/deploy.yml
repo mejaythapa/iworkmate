@@ -22,4 +22,5 @@ jobs:
           script: |
             cd ~/n8n-docker-caddy/iworkmate
             git pull origin main
+            cd ..
             docker compose restart web
