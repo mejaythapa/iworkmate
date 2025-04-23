@@ -18,7 +18,7 @@ jobs:
         with:
           host: ${{ secrets.DROPLET_IP }}
           username: ${{ secrets.DROPLET_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.IWORKMATE }}
           script: |
             cd ~/n8n-docker-caddy/iworkmate
             git pull origin main
